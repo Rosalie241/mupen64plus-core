@@ -403,6 +403,11 @@ static m64p_error plugin_connect_input(m64p_dynlib_handle plugin_handle)
             DebugMessage(M64MSG_WARNING, "Input plugin does not contain VRU support.");
         }
 
+        if (!GET_FUNC(ptr_MouseMove, input.mouseMove, "MouseMove"))
+        {
+            DebugMessage(M64MSG_WARNING, "Input plugin does not contain mouse support.");
+        }
+
         /* check the version info */
         (*input.getVersion)(&PluginType, &PluginVersion, &APIVersion, NULL, NULL);
         if (PluginType != M64PLUGIN_INPUT || (APIVersion & 0xffff0000) != (INPUT_API_VERSION & 0xffff0000) || APIVersion < 0x020100)
