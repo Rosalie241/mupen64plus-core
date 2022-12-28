@@ -233,13 +233,11 @@ static m64p_error plugin_start_gfx(void)
     /* Here we feed 64DD IPL ROM header to GFX plugin if 64DD is present.
      * We use g_media_loader.get_dd_rom to detect 64DD presence
      * instead of g_dev because the latter is not yet initialized at plugin_start time */
-    /* XXX: Not sure it is the best way to convey which game is being played to the GFX plugin
-     * as 64DD IPL is the same for all 64DD games... */
     char* dd_ipl_rom_filename = (g_media_loader.get_dd_rom == NULL)
         ? NULL
         : g_media_loader.get_dd_rom(g_media_loader.cb_data);
 
-    uint32_t rom_base = (dd_ipl_rom_filename != NULL && strlen(dd_ipl_rom_filename) != 0 && media != 'C')
+    uint32_t rom_base = (g_rom_size == 0 || (dd_ipl_rom_filename != NULL && strlen(dd_ipl_rom_filename) != 0 && media != 'C'))
         ? MM_DD_ROM
         : MM_CART_ROM;
 
