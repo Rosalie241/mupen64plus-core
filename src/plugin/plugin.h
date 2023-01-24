@@ -100,6 +100,8 @@ typedef struct _input_plugin_functions
 	ptr_RomOpen             romOpen;
 	ptr_SDL_KeyDown         keyDown;
 	ptr_SDL_KeyUp           keyUp;
+	ptr_MouseMove           mouseMove;
+	ptr_MouseButton         mouseButton;
 	ptr_RenderCallback      renderCallback;
 	ptr_SendVRUWord         sendVRUWord;
 	ptr_SetMicState         setMicState;
