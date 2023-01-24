@@ -878,7 +878,11 @@ m64p_error main_reset(int do_hard_reset)
 
 static void video_plugin_render_callback(int bScreenRedrawn)
 {
+#ifdef M64P_OSD
     int bOSD = ConfigGetParamBool(g_CoreConfig, "OnScreenDisplay");
+#else
+    int bOSD = 0;
+#endif /* M64P_OSD */
 
     // if the flag is set to take a screenshot, then grab it now
     if (l_TakeScreenshot != 0)
